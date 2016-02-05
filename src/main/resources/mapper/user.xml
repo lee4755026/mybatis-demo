@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lairen.dao.IUserDao">
+
+    <!-- mapping -->
+    <resultMap id="user" type="com.lairen.pojo.User">
+        <result property="id" column="id"/>
+        <result property="mobile" column="mobile"/>
+        <result property="nickname" column="nickname"/>
+    </resultMap>
+
+
+    <!-- 根据ID查询用户信息 -->
+    <select id="queryUserById" resultMap="user">
+        SELECT
+        id,mobile,nickname
+        FROM
+        home_user
+        WHERE
+        id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.lairen.pojo.User" >
+        insert into home_user (id, mobile, nickname)
+        values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR})
+    </insert>
+
+</mapper>
